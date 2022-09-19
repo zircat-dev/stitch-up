@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@features/*": ["./src/features/*"],
+      "@components/*": ["./src/components/*"],
+      "@common/*": ["./src/common/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@public/*": ["./public/*"]
+    }
+  }
+}
