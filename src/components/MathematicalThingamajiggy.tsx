@@ -1,7 +1,9 @@
 import React from 'react';
 
 const initialState = {
-  small: {
+  werrtrte: {
+    id: 'werrtrte',
+    size: '',
     stitches: {
       chest: 0,
       wrist: 0,
@@ -12,12 +14,18 @@ const initialState = {
       armpitToWrist: 0,
     },
   },
+  girmoeimgr: {
+    ...initialState.werrtrte
+  }
   ease: 0,
 };
 const MathContext = React.createContext({});
 
 const MathProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, setState] = React.useState(initialState);
+  const [state, setState] = React.useReducer(initialState);
+  const updateState = (path, value) => {
+
+  }
 
   return (
     <MathContext.Provider value={{ state, setState }}>
