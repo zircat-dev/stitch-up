@@ -1,25 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MeasurementsRow from './components/MeasurementsRow';
+import { ChakraProvider } from "@chakra-ui/react";
+import RowHeader from './components/RowHeader';
+import GaugeRow from './components/GaugeRow';
+import Ease from './components/Ease';
+import Math from './components/MathematicalThingamajiggy';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Math.Provider>
+        <div className="App">
+          <RowHeader />
+          <MeasurementsRow size="small" />
+          <GaugeRow />
+          <Ease />
+        </div>
+      </Math.Provider>
+    </ChakraProvider>
   );
 }
 
