@@ -1,25 +1,33 @@
 import React from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
-import { ThemeProvider } from '@common/Theme';
-import MeasurementsRow from '@components/MeasurementsRow';
-import RowHeader from '@components/RowHeader';
+import { ChakraProvider, ColorModeScript, Container, Flex } from '@chakra-ui/react';
+import { EditableMeasurements, ResultsView } from '@components/MeasurementsRow';
 import GaugeRow from '@components/GaugeRow';
 import Ease from '@components/Ease';
 import Math from '@components/MathematicalThingamajiggy';
 
+import theme from './theme';
+
+const colorModeConfig = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+}
+
 const App = () => (
-  <ThemeProvider>
-    <ChakraProvider>
-      <Math.Provider>
-        <div className="App">
-          <RowHeader />
-          <MeasurementsRow size="small" />
-          <GaugeRow />
-          <Ease />
-        </div>
-      </Math.Provider>
-    </ChakraProvider>
-  </ThemeProvider>
+  <ChakraProvider theme={theme}>
+    <ColorModeScript initialColorMode="dark" />
+    <Math.Provider>
+      <div className="App">
+        <Container width="container.xl" maxW="full">
+          <Flex direction="column" gap="8">
+            <EditableMeasurements />
+            <GaugeRow />
+            <Ease />
+            <ResultsView />
+          </Flex>
+        </Container>
+      </div>
+    </Math.Provider>
+  </ChakraProvider>
 );
 
 export default App;

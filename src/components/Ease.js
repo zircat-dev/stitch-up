@@ -7,9 +7,13 @@ import {
   SliderThumb,
   SliderTrack,
 } from '@chakra-ui/react';
+import { MathContext } from './MathematicalThingamajiggy';
+import { setProp } from '@utils/ramda';
 
 const Ease = () => {
-  const [sliderValue, setSliderValue] = useState(0);
+  const { state, actions } = React.useContext(MathContext);
+
+  const sliderValue = state.ease;
 
   return (
     <Slider
@@ -17,7 +21,7 @@ const Ease = () => {
       min={-10}
       max={10}
       step={1}
-      onChange={setSliderValue}
+      onChange={actions.updateEase}
     >
       <SliderMark
         value={sliderValue}
@@ -28,7 +32,7 @@ const Ease = () => {
         ml="-5"
         w="12"
       >
-        {sliderValue}%
+        {sliderValue}cm
       </SliderMark>
       <SliderTrack bg="red.100">
         <Box position="relative" right={10} />

@@ -1,8 +1,9 @@
-import { lensPath, view } from 'ramda';
+import { lensPath, view, set, over } from 'ramda';
 
-const getProp = (path) => (data) => {
-  const fieldPath = lensPath(path.split('.'));
-  return view(fieldPath, data);
-};
+export const makeLens = (path) => lensPath(path.split('.'));
 
-export { getProp };
+export const getProp = (path) => view(makeLens(path));
+
+export const setProp = (path, value) => set(makeLens(path), value);
+
+export const modifyProp = (path, fn) => over(makeLens(path), fn);
