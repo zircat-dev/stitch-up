@@ -63,13 +63,7 @@ const measurementFields = [
   {
     label: 'Size',
     type: 'text',
-    path: 'size',
-    component: (props) => (
-      <Box>
-        <IconButton icon={<DeleteIcon />} />
-        <TextInput {...props} />
-      </Box>
-    )
+    path: 'size'
   },
   {
     label: 'Chest Circumference',
@@ -99,7 +93,7 @@ const measurementFields = [
 ]
 
 const editableFields = (updater) => (field, rowItem) => {
-  const Field = fieldTypeMap[field.type];
+  const Field = field?.component ?? fieldTypeMap[field.type];
   return (
     <Field value={getProp(field.path)(rowItem)} update={updater(rowItem.id, field.path)} />
   )
@@ -114,6 +108,7 @@ const TableDisplay = ({ fields, items, fieldCreator, onDelete }) => {
             {fields.map((field) => (
               <Th key={field.label}>{field.label}</Th>
             ))}
+            <Th data-purpose="Space for row controls"></Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -128,12 +123,12 @@ const TableDisplay = ({ fields, items, fieldCreator, onDelete }) => {
                       </Td>
                     );
                   })}
+                  <Td>
+                    {onDelete && (
+                      <IconButton colorScheme="red" variant="outline" icon={<DeleteIcon />} onClick={() => onDelete(rowItem.id)} />
+                    )}
+                  </Td>
                 </Tr>
-                {onDelete && (
-                  <Box>
-                    <IconButton icon={<DeleteIcon />} onClick={() => onDelete(rowItem.id)} />
-                  </Box>
-                )}
               </React.Fragment>
             )
           })}
@@ -154,6 +149,7 @@ export const EditableMeasurements = () => {
   })
 
   const fieldCreator = editableFields(updater);
+
   return (
     <Box>
       <TableDisplay fields={measurementFields} items={items} fieldCreator={fieldCreator} onDelete={actions.deleteItem} />
