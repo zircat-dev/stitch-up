@@ -3,6 +3,8 @@ import {
   SimpleGrid,
   Box,
   Heading,
+  Center,
+  FormLabel,
 } from '@chakra-ui/react';
 
 import { MeasurementValue } from './MeasurementsRow';
@@ -16,19 +18,24 @@ const GaugeRow = () => {
   return (
     <Box flex="1">
       <SimpleGrid minChildWidth="120px" spacing="40px">
-        <Box>
+        <Center>
           <Heading size="md">Gauge</Heading>
-        </Box>
+        </Center>
         <Box>
-          <Heading size="md">Rows</Heading>
-          <MeasurementValue value={state.gauge.rows} update={updateGauge('rows')} />
+          {/* <Heading size="md">Rows</Heading> */}
+          <FormLabel>
+            Rows
+            <MeasurementValue value={state.gauge.rows} update={updateGauge('rows')} />
+          </FormLabel>
         </Box>
-        <Box>
+        <Center>
           <Heading size="md">&</Heading>
-        </Box>
+        </Center>
         <Box>
-          <Heading size="md">Stitches</Heading>
-          <MeasurementValue value={state.gauge.stitches} update={updateGauge('stitches')} />
+          <FormLabel>
+            Stitches
+            <MeasurementValue value={state.gauge.stitches} update={updateGauge('stitches')} />
+          </FormLabel>
         </Box>
       </SimpleGrid>
     </Box>
