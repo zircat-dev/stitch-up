@@ -1,7 +1,7 @@
 import { uuid } from '@utils/id';
 import { modifyProp, setProp } from '@utils/ramda';
 import { identity, omit } from 'ramda';
-import React, { useState,createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 
 // const schema = {
 //   size: {
@@ -135,7 +135,5 @@ const MathProvider = ({ children }) => {
   );
 };
 
-const Provider = MathProvider;
-const Consumer = MathContext.Consumer;
-
-export default { Provider, Consumer };
+export const Provider = MathProvider;
+export const Consumer = MathContext.Consumer;

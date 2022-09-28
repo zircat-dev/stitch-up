@@ -1,15 +1,5 @@
 import React from 'react';
 import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  NumberInput,
-  Input,
   SimpleGrid,
   Box,
   Heading,
@@ -17,7 +7,6 @@ import {
 
 import { MeasurementValue } from './MeasurementsRow';
 import { MathContext } from './MathematicalThingamajiggy';
-import { setProp } from '@utils/ramda';
 
 const GaugeRow = () => {
   const { state, actions } = React.useContext(MathContext);

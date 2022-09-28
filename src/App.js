@@ -3,14 +3,9 @@ import { ChakraProvider, ColorModeScript, Container, Flex } from '@chakra-ui/rea
 import { EditableMeasurements, ResultsView } from '@components/MeasurementsRow';
 import GaugeRow from '@components/GaugeRow';
 import Ease from '@components/Ease';
-import Math from '@components/MathematicalThingamajiggy';
+import * as Math from '@components/MathematicalThingamajiggy';
 
 import theme from './theme';
-
-const colorModeConfig = {
-  initialColorMode: "dark",
-  useSystemColorMode: false,
-}
 
 const App = () => (
   <ChakraProvider theme={theme}>

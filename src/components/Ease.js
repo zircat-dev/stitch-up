@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Slider,
@@ -8,7 +8,6 @@ import {
   SliderTrack,
 } from '@chakra-ui/react';
 import { MathContext } from './MathematicalThingamajiggy';
-import { setProp } from '@utils/ramda';
 
 const Ease = () => {
   const { state, actions } = React.useContext(MathContext);

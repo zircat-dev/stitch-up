@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   NumberInputField,
   NumberInputStepper,
@@ -6,7 +6,6 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Input,
-  SimpleGrid,
   Box,
   TableContainer,
   Table,
@@ -20,8 +19,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { MathContext } from './MathematicalThingamajiggy';
-import { identity, prop } from 'ramda';
-import { setProp, getProp } from '@utils/ramda';
+import { getProp } from '@utils/ramda';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 
 
