@@ -21,16 +21,19 @@ import {
 import { MathContext } from './MathematicalThingamajiggy';
 import { getProp } from '@utils/ramda';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
+import { multiply } from 'ramda';
 
 
 
-export const MeasurementValue = ({ value, update }) => {
+export const MeasurementValue = ({ value, update, unit }) => {
+  const formatWithUnit = (value) => unit ? `${value} ${unit}` : value;
   return (
     <NumberInput
       onChange={(valueStr, valueNumber) => update(valueNumber)}
       defaultValue={value}
       precision={2}
       step={0.2}
+      format={formatWithUnit}
     >
       <NumberInputField />
       <NumberInputStepper>
@@ -67,33 +70,67 @@ const measurementFields = [
     label: 'Chest Circumference',
     type: 'number',
     path: 'stitches.chest',
+    input: {
+      unit: 'cm'
+    },
+    output: {
+      unit: 'stitches'
+    }
   },
   {
     label: 'Shoulder to Hips',
     type: 'number',
     path: 'row.shoulderToHips',
+    input: {
+      unit: 'cm'
+    },
+    output: {
+      unit: 'rows'
+    }
   },
   {
     label: 'Armpit to Wrist',
     type: 'number',
     path: 'row.armpitToWrist',
+    input: {
+      unit: 'cm'
+    },
+    output: {
+      unit: 'rows'
+    }
   },
   {
     label: 'Wrist Circumference',
     type: 'number',
     path: 'stitches.wrist',
+    input: {
+      unit: 'cm'
+    },
+    output: {
+      unit: 'stitches'
+    }
   },
   {
     label: 'Armhole Depth',
     type: 'number',
     path: 'stitches.armhole',
+    input: {
+      unit: 'cm'
+    },
+    output: {
+      unit: 'stitches'
+    }
   },
 ]
 
 const editableFields = (updater) => (field, rowItem) => {
   const Field = field?.component ?? fieldTypeMap[field.type];
   return (
-    <Field value={getProp(field.path)(rowItem)} update={updater(rowItem.id, field.path)} />
+    <Field
+      value={getProp(field.path)(rowItem)}
+      update={updater(rowItem.id, field.path)}
+      {...field.input}
+    />
   )
 }
 
@@ -112,8 +149,8 @@ const TableDisplay = ({ fields, items, fieldCreator, onDelete }) => {
         <Tbody>
           {Object.values(items).map((rowItem) => {
             return (
-              <React.Fragment>
-                <Tr key={rowItem.id}>
+              <React.Fragment key={rowItem.id}>
+                <Tr>
                   {fields.map((field) => {
                     return (
                       <Td key={field.label}>
@@ -150,7 +187,12 @@ export const EditableMeasurements = () => {
 
   return (
     <Box>
-      <TableDisplay fields={measurementFields} items={items} fieldCreator={fieldCreator} onDelete={actions.deleteItem} />
+      <TableDisplay
+        fields={measurementFields}
+        items={items} 
+        fieldCreator={fieldCreator} 
+        onDelete={actions.deleteItem} 
+      />
       <Button onClick={actions.createItem} leftIcon={<AddIcon />}><span>Create new item</span></Button>
     </Box>
   )
@@ -160,7 +202,7 @@ export const ResultsView = () => {
   const { results } = React.useContext(MathContext);
 
   const fieldCreator = (field, rowItem) => (
-    <Text>{getProp(field.path)(rowItem)}</Text>
+    <Text>{getProp(field.path)(rowItem)} {field.output?.unit}</Text>
   )
 
   return (

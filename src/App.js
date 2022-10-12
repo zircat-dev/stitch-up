@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, ColorModeScript, Container, Flex } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, Container, Flex, Heading } from '@chakra-ui/react';
 import { EditableMeasurements, ResultsView } from '@components/MeasurementsRow';
 import GaugeRow from '@components/GaugeRow';
 import Ease from '@components/Ease';
@@ -12,7 +12,8 @@ const App = () => (
     <ColorModeScript initialColorMode="dark" />
     <Math.Provider>
       <div className="App">
-        <Container width="container.xl" maxW="full">
+        <Container width="container.xl" maxW="full" marginTop="100">
+          <Heading as="h1" size="2xl" textAlign="center" mb={4}>Stitchy Fit</Heading>
           <Flex direction="column" gap="8">
             <EditableMeasurements />
             <GaugeRow />
