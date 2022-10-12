@@ -15,8 +15,8 @@ import React, { createContext, useReducer } from 'react';
 export const doTheCalculamation = (ease, gauge, measurements) => {
   const { rows, stitches } = gauge;
 
-  const stitchesPerCm = Math.round(stitches / 10);
-  const rowsPerCm = Math.round(rows / 10);
+  const stitchesPerCm = stitches / 10;
+  const rowsPerCm = rows / 10;
 
   const chest = Math.round(stitchesPerCm * (measurements.stitches.chest + ease));
   const wrist = Math.round(stitchesPerCm * (measurements.stitches.wrist + ease));
@@ -24,6 +24,21 @@ export const doTheCalculamation = (ease, gauge, measurements) => {
 
   const shoulderToHips = Math.round(rowsPerCm * (measurements.row.shoulderToHips + ease));
   const armpitToWrist = Math.round(rowsPerCm * (measurements.row.armpitToWrist + ease));
+
+  console.log({
+    stitchesPerCm,
+    rowsPerCm,
+
+    inputs: measurements,
+
+    outputs: {
+      chest,
+      wrist,
+      armhole,
+      shoulderToHips,
+      armpitToWrist
+    }
+  })
 
   return {
     size: measurements.size,
