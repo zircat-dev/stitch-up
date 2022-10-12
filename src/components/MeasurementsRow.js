@@ -21,10 +21,6 @@ import {
 import { MathContext } from './MathematicalThingamajiggy';
 import { getProp } from '@utils/ramda';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
-import { multiply } from 'ramda';
-
-
-
 export const MeasurementValue = ({ value, update, unit }) => {
   const formatWithUnit = (value) => unit ? `${value} ${unit}` : value;
   return (
